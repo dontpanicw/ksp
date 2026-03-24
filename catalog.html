@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="UTF-8">
+    <title>Каталог</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <nav>
+        <ul>
+            <li><a href="index.html">Главная</a></li>
+            <li><a href="catalog.html">Каталог</a></li>
+            <li><a href="#" id="cart-link">Корзина (<span id="cart-count">0</span>)</a></li>
+        </ul>
+    </nav>
+    <hr>
+
+    <h1>Каталог</h1>
+
+    <div class="filter-section">
+        <label>Фильтр по цене:</label>
+        <button onclick="filterProducts('all')">Все</button>
+        <button onclick="filterProducts('low')">До 500₽</button>
+        <button onclick="filterProducts('medium')">500-1000₽</button>
+        <button onclick="filterProducts('high')">Более 1000₽</button>
+    </div>
+
+    <div id="products-container">
+        <div class="product-item" data-price="350">
+            <h3>Бутылка для воды</h3>
+            <img src="bottle.png" alt="Товар 1" width="100" height="80">
+            <p class="price">Цена: 350₽</p>
+            <button class="add-to-cart" data-name="Бутылка для воды" data-price="350">Добавить в корзину</button>
+            <br>
+            <a href="bottle.html">Подробнее</a>
+        </div>
+
+        <div class="product-item" data-price="800">
+            <h3>Картхолдер</h3>
+            <img src="cartholder.png" alt="Товар 2" width="130" height="80">
+            <p class="price">Цена: 800₽</p>
+            <button class="add-to-cart" data-name="Картхолдер" data-price="800">Добавить в корзину</button>
+            <br>
+            <a href="cartholder.html">Подробнее</a>
+        </div>
+
+        <div class="product-item" data-price="250">
+            <h3>Брелок из паракорда</h3>
+            <img src="trinket.png" alt="Товар 3" width="130" height="80">
+            <p class="price">Цена: 250₽</p>
+            <button class="add-to-cart" data-name="Брелок из паракорда" data-price="250">Добавить в корзину</button>
+            <br>
+            <a href="trinket.html">Подробнее</a>
+        </div>
+    </div>
+
+    <div id="cart-modal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Корзина</h2>
+            <div id="cart-items"></div>
+            <div id="cart-total">Итого: 0₽</div>
+            <button id="clear-cart">Очистить корзину</button>
+            <button id="checkout">Оплатить</button>
+        </div>
+    </div>
+
+    <hr>
+    <footer>
+        &copy; Все права защищены
+    </footer>
+
+    <script src="shop.js"></script>
+</body>
+</html>
