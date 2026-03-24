@@ -8,6 +8,20 @@ const products = [
 // Массив корзины
 let cart = [];
 
+// Функция сохранения корзины в LocalStorage
+const saveCartToLocalStorage = () => {
+    localStorage.setItem('cart', JSON.stringify(cart));
+};
+
+// Функция загрузки корзины из LocalStorage
+const loadCartFromLocalStorage = () => {
+    const savedCart = localStorage.getItem('cart');
+    if (savedCart) {
+        cart = JSON.parse(savedCart);
+        updateCartCount();
+    }
+};
+
 // Функция подсчета общей суммы (стрелочная функция)
 const calculateTotal = () => {
     return cart.reduce((total, item) => total + item.price * item.quantity, 0);
@@ -50,18 +64,21 @@ const addToCart = (name, price) => {
         cart.push({ name, price: Number(price), quantity: 1 });
     }
     
+    saveCartToLocalStorage();
     renderCart();
 };
 
 // Функция удаления товара из корзины
 const removeFromCart = (index) => {
     cart.splice(index, 1);
+    saveCartToLocalStorage();
     renderCart();
 };
 
 // Функция очистки корзины
 const clearCart = () => {
     cart = [];
+    saveCartToLocalStorage();
     renderCart();
 };
 
@@ -113,6 +130,12 @@ const closeModal = () => {
 
 // Обработчики событий
 document.addEventListener('DOMContentLoaded', () => {
+    // Загрузить корзину из LocalStorage при загрузке страницы
+    loadCartFromLocalStorage();
+    
+    // Инициализировать счетчик корзины
+    updateCartCount();
+    
     // Найти все кнопки "Добавить в корзину"
     const addToCartButtons = document.querySelectorAll('.add-to-cart');
     
